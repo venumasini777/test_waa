@@ -1,0 +1,1136 @@
+{
+	"info": {
+		"_postman_id": "9a575c88-b2ed-4f34-b5c0-b18ef49362f2",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "preferred_pin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"correct response\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});\r",
+							"pm.test(\"Check pin\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.pin).to.eql(\"600089\");\r",
+							"    pm.expect(responseJson.global_default).to.eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{waa-baseurl}}/rest/v1/hk/preferred_pin?mobile_no=9094762110",
+					"host": [
+						"{{waa-baseurl}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"hk",
+						"preferred_pin"
+					],
+					"query": [
+						{
+							"key": "mobile_no",
+							"value": "9094762110"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "preferred_pin",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/preferred_pin?mobile_no=9884947409",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"preferred_pin"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9884947409"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"pin\": \"600044\",\r\n    \"global_default\": false\r\n}"
+				}
+			]
+		},
+		{
+			"name": "user_details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"correct response\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});\r",
+							"pm.test(\"Check user details\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.firstname).to.eql(\"Pitchaimani\");\r",
+							"    pm.expect(responseJson.lastname).to.eql(\"Muthuveeran\");\r",
+							"    pm.expect(responseJson.mobile_no).to.eql(\"9094762110\");\r",
+							"    pm.expect(responseJson.cod_allowed).to.eql(true);\r",
+							"    pm.expect(responseJson.new_customer).to.eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{waa-baseurl}}/rest/v1/hk/user_details?mobile_no=9094762110",
+					"host": [
+						"{{waa-baseurl}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"hk",
+						"user_details"
+					],
+					"query": [
+						{
+							"key": "mobile_no",
+							"value": "9094762110"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "user_details",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/user_details?mobile_no=9094762110",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"user_details"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"firstname\": \"Pitchaimani\",\r\n    \"lastname\": \"Muthuveeran\",\r\n    \"mobile_no\": \"9094762110\",\r\n    \"cod_allowed\": true,\r\n    \"new_customer\": false\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get_curated_offers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"correct response\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});\r",
+							"const responseJson = pm.response.json();\r",
+							"pm.collectionVariables.set(\"total stores\", responseJson.length);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offers?mobile_no=9094762110",
+					"host": [
+						"{{waa-baseurl}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"hk",
+						"get_curated_offers"
+					],
+					"query": [
+						{
+							"key": "mobile_no",
+							"value": "9094762110"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_curated_offers",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offers?mobile_no=9884947409",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offers"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9884947409"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "290"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 09 Oct 2021 10:07:47 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"display_name\": \"Staples Discount Store\",\n        \"priority\": 1,\n        \"offer_type\": 0\n    },\n    {\n        \"display_name\": \"Dairy and Bakery Discount Store\",\n        \"priority\": 2,\n        \"offer_type\": 0\n    },\n    {\n        \"display_name\": \"Men’s Wear Discount Store\",\n        \"priority\": 5,\n        \"offer_type\": 0\n    },\n    {\n        \"display_name\": \"Buy X Get Y Store\",\n        \"priority\": 3,\n        \"offer_type\": 1\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get_curated_offer_product_id_list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const current_store_id = pm.collectionVariables.get(\"current_store_id\");\r",
+							"\r",
+							"if (current_store_id < pm.collectionVariables.get(\"total stores\") ){\r",
+							"    postman.setNextRequest(\"get_curated_offer_product_id_list\");\r",
+							"} else {\r",
+							"    postman.setNextRequest(null);\r",
+							"    pm.collectionVariables.set(\"current_store_id\", null);\r",
+							"}\r",
+							"console.log(\"checking store \"+current_store_id+\" availability\");\r",
+							"pm.test(\"correct response\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let current_store_id = pm.collectionVariables.get(\"current_store_id\");\r",
+							"\r",
+							"if(!current_store_id) {\r",
+							"    current_store_id = 0;\r",
+							"}\r",
+							"\r",
+							"pm.collectionVariables.set(\"current_store_id\", current_store_id+1);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id={{current_store_id}}",
+					"host": [
+						"{{waa-baseurl}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"hk",
+						"get_curated_offer_product_id_list"
+					],
+					"query": [
+						{
+							"key": "mobile_no",
+							"value": "9094762110"
+						},
+						{
+							"key": "store_id",
+							"value": "{{current_store_id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_curated_offer_product_id_list(discount_store)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=1",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2296"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Oct 2021 05:32:57 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Half Price Store\",\n    \"product_id_list\": [\n        \"RVIOG8LL7H~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVXWXFOJV9~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RV9BXNXJPV~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVXYU9RUNZ~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVI7UHT0WY~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVM81VIL3I~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVBEVIT4HV~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVPPNSFL9K~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVLV93DBU1~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVSMJKAPHQ~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVQRMIETFU~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVTGNKITRW~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVJWCMUDU5~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVJTVAZECF~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVOOXGIWGY~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVI60WDARF~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVH3QVA4S8~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491694690~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVYMXWI7SR~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVH1GBC4EV~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVKEOPRTSZ~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491350009~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491350010~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491653646~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"RVPZ4O77YM~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491638581~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491417875~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490031817~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491173885~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491934152~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    ]\n}"
+				},
+				{
+					"name": "get_curated_offer_product_id_list(discount_store)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=2",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1405"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Oct 2021 05:33:05 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Min 25% off - Diwali  Snacks Store\",\n    \"product_id_list\": [\n        \"490200912~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490200915~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491439740~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491439741~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491453892~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551666~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551667~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551668~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551669~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551670~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551826~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551827~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551829~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551830~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491231696~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491231697~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491231698~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491551677~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    ]\n}"
+				},
+				{
+					"name": "get_curated_offer_product_id_list(discount_store)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=3",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1766"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Oct 2021 05:33:14 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Min 25% off - Pooja Needs\",\n    \"product_id_list\": [\n        \"491264588~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491278259~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491278261~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491298169~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491298170~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491298174~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491299097~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491336969~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491491316~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491581191~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491584192~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491584193~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491584194~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491598799~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491350195~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491903320~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491377777~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490012618~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005843~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005844~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490015522~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491251307~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491251325~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    ]\n}"
+				},
+				{
+					"name": "get_curated_offer_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=4",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Oct 2021 05:33:23 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Min 20% off – On Men’s Wear\",\n    \"product_id_list\": []\n}"
+				},
+				{
+					"name": "get_curated_offer_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=5",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1166"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Oct 2021 05:33:42 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Buy 1 Get 1 Store\",\n    \"product_id_list\": [\n        \"491631749~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491631729~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491379407~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490959208~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491694365~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490782470~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491637467~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002287~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491631780~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490052699~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491601836~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491631781~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491631778~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491631779~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491631777~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    ]\n}"
+				},
+				{
+					"name": "get_curated_offer_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=6",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "6710"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Oct 2021 05:34:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Rs 99 Store\",\n    \"product_id_list\": [\n        \"490001341~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"590000097~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"590000095~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000032~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"590000091~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"590000092~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000038~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490830932~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490015763~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491439006~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491439007~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491165115~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490003796~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000041~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490560274~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490001387~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000057~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490972169~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491637467~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490503479~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490001392~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491249718~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002001~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002364~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491215527~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491337398~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000073~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005641~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000070~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491074036~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005647~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002255~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491432708~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491017990~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491465267~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491373488~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491586164~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491502849~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491186917~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490057054~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491350010~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490984255~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490337869~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490985468~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491338266~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491491698~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491491573~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491186625~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491338173~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491185046~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491185047~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491185048~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491436154~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491319789~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490007739~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490007738~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491203235~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491584193~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490006655~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491584192~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490479104~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490008968~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490999937~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490478026~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490999936~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490007871~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491019563~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491062305~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491019561~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490008737~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491187258~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491187257~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491410091~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491185076~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490008739~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491016281~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491187251~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490427669~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491187264~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490008636~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"590000619~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491203242~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490016258~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490226009~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490004166~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490009614~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490004177~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490544387~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490155010~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490155015~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    ]\n}"
+				},
+				{
+					"name": "get_curated_offer_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=7",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "6712"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Oct 2021 05:34:34 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Popular Deals\",\n    \"product_id_list\": [\n        \"491184905~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491637663~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490003405~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490015864~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490577858~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490003413~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000389~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490003412~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491338203~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490015876~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491338200~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000391~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"590000096~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490004996~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002339~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490058570~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000159~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490415502~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491210012~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490642339~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002585~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491293218~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002340~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490001259~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490373600~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490782406~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000172~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490784891~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000170~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490001268~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490001269~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490211517~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491167769~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490803894~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490211516~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490000173~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491229935~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490311365~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491278261~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491409951~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491409953~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491409954~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002367~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002124~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002123~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002365~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491409955~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490059250~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490642398~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002128~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491487024~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490059255~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005639~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491337397~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005640~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491397890~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491361262~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490003465~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491465268~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490006747~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491186918~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490642371~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490642373~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491338267~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005660~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490568519~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491390881~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491185155~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491179957~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490003255~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490003254~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490960245~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491185162~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491317363~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491584194~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491614721~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491229715~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491350163~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490007878~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490007877~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490007870~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490005210~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491552148~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490875134~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491416424~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002196~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002195~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002198~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"490002197~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n        \"491614746~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    ]\n}"
+				},
+				{
+					"name": "get_curated_offer_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_curated_offer_product_id_list?mobile_no=9094762110&store_id=5",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_curated_offer_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								},
+								{
+									"key": "store_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 19 Oct 2021 17:59:26 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store, no-cache, must-revalidate, max-age=0, stale-if-error=0"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Cache",
+							"value": "Miss from cloudfront"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 a76c423ce56b306d344d0a940661cd11.cloudfront.net (CloudFront)"
+						},
+						{
+							"key": "X-Amz-Cf-Pop",
+							"value": "BOM51-C2"
+						},
+						{
+							"key": "X-Amz-Cf-Id",
+							"value": "mvbGIO_PEBxL20dpxDd2ub3cZtCvmMhqpoiTiHMqzCHvHDN0t_r06g=="
+						},
+						{
+							"key": "Age",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"display_name\": \"Buy 1 Get 1 Store\",\n    \"product_id_list\": [\n        \"491631749~I7b0ZcmBunh7OOBtqpRo1WGjCfvLsxj1cKk=~BONF7aLDSfeEIVBU\",\n        \"491631729~JN7CCdyOaVj0wQD4E45P%2BVOSgj2i55x3Rpc=~JMHx5F1jJoWwLsR5\",\n        \"491379407~feD2G1LJN_RzkxAqSRuKHFLiG6J0dlreKzg=~8MmN9jz1CJeLWVJT\",\n        \"490959208~%2BnlSvWmqhINLYoXw0CxOqScYtQ%2Br9TiVpN8=~WDCLkmotacaZoBRy\",\n        \"491694365~%2BlnFuu7VrxrYuI1JvdQhO9BudH6ehZqNUe8=~YXp4aXuFV8ClrDTU\",\n        \"490743987~mgLzJ3tpotsQYBpIA3GRjZ0NOLOErqHs680=~gHFTjowfj1q%2Bm8KO\",\n        \"490782470~MM3sQwoI7mrQGrXA_YRNo5rXqj3AG1%2BGPJk=~RB4%2Bu3YCrsvTtPxb\",\n        \"491637467~EXLUCL13%2BJyhlc67lRVtCAtuut%2BTubK0U6o=~s2T4aSL4W7SWTKzR\",\n        \"490002287~pfDEKiJmFZSxWoS2JqOJ9q7rGLweKGzXvks=~FNbRWHGvu%2BaVEv2l\",\n        \"491631780~UrH%2B7yMSwNyzu6bwBPae2sepmfp5jA6%2BAq8=~MW_ELiRRQjXxAywg\",\n        \"491570906~uYOSNwpHYuze6_ZEmqAFbot8utnY6V0lktg=~Dl78eJPLSxTSo%2BPD\",\n        \"490052699~eNjAEyopiDU1VuFtnOw6KCm0ZGul%2B8pES2E=~sdeOFq9xfnN848Wl\",\n        \"491601836~tT%2B%2BunXIIPAktwU4%2BB9lQUIvfmAzN2keP%2Bw=~3hfI6BXAg3KAS6Gv\",\n        \"491631781~trN1HgHpH3qA7TVaubjBExuz0wGHWrAATF8=~1otsHSIhSa3%2BCT6d\",\n        \"491631778~kehZTBeWD7qOHJhKwQvd9ThCxiik08VoVyU=~0vqFqKUWkN7VXNTt\",\n        \"491631779~5VY33pSIIxBbmabOTf3_u6SEZkNSmZeINtM=~UjEyQLo525f4oMDJ\",\n        \"491631777~h4N7%2BaA12LTDYy6T5Xb_YpZUckuLzEqTQ8k=~ZsCNpkNJG1Q1UVwK\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "get_product_id_list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"correct response\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{waa-baseurl}}/rest/v1/hk/get_product_id_list?mobile_no=9094762110",
+					"host": [
+						"{{waa-baseurl}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"hk",
+						"get_product_id_list"
+					],
+					"query": [
+						{
+							"key": "mobile_no",
+							"value": "9094762110"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_product_id_list?mobile_no=9884947409",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9884947409"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "9275"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Oct 2021 08:51:39 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490966844~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491062929~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490008332~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490935500~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491127282~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491441281~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490985468~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490985893~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490503479~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490008277~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490479104~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491390712~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490012806~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490002441~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490999937~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491168382~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590001266~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491409955~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490006017~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491538484~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491598799~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490000031~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490010168~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490337869~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491551491~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491187264~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491441280~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491186625~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490007371~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491583792~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491349596~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491417390~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490672482~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490009127~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491335765~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491278616~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003517~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491335633~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490001341~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490001401~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491584193~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491186631~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491504124~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491299500~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003531~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490015763~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491373488~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491231095~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491185114~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490542637~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491584192~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491416424~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490782404~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490999936~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490008230~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000619~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000092~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003516~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491215527~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490003812~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490003796~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000002~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491361267~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491586426~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490000827~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491439871~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491338173~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491071103~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490000041~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491470720~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491168388~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491436153~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491586021~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490346029~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491019563~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491208768~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491458271~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490226009~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491418191~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000086~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491436154~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590002744~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000083~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490915877~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    }\n]"
+				},
+				{
+					"name": "get_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_product_id_list?mobile_no=9094762110",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "9059"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 16 Oct 2021 09:17:14 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490001392~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491062929~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490008332~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490985468~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491127282~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491441281~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490008277~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490985893~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490503479~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491168382~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490479104~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491409955~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490006017~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590001266~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491598799~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491551491~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491538484~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490337869~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491349596~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490010168~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491441280~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491278616~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491187264~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491583792~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490001341~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490007371~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490672482~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491299500~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491417390~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491335765~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491373488~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490009127~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491335633~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490008230~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003517~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000092~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490001401~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491584193~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491504124~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000002~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003531~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490015763~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000619~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491338173~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003516~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491584192~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491586021~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490003812~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490999936~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491208768~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490000827~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491418191~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491071103~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491215527~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590002744~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490346029~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490003796~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490020520~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491458271~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491439871~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490000525~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000086~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490000041~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000174~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000083~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491436153~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000082~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491071352~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491019563~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491491597~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491187257~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490226009~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491551427~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490006491~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490915877~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491551213~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491319789~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490871565~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490001400~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000449~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490957857~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491417263~7WnJkB13m9ucU8pCxC2sYKRCKd_qlHc37CY=~S2JQZVNoVmtZcDNzNnY5eQ==\"\n    }\n]"
+				},
+				{
+					"name": "get_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_product_id_list?mobile_no=9094762110",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "8501"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 20 Oct 2021 10:00:07 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490001392~35ndwEMtBjDjT96aa3YUwkOO3a8k_5xzDWs=~I0eNGxoaJL2glnB8\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491062929~pCuL4aaN-ozML1ejFihQCCZTmzXdfPLeqJE=~XG-fJnbZxLG0Odwt\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490008332~QrmDJu3_s6rwyS99UUk1PwXXg-RYvr6dOr0=~i1xzFMX9dNfyooiH\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490966844~mMtUEoJFfBAvJauuJH8lskZmNaecS99GKz8=~HlxMVOzapsz5agWe\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491127282~XMJJD3a0BCjPueE8caQicjjRod8j4Rq3pqI=~wIybep1obyPlYioo\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491441281~xDhe9iyxjUuTawCpuVaSKcPF9-kAivm66lg=~ZLCFIeQBcjKB7Mxt\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491379415~m7YcjQKnHgKcnFSCFqtaJaY0NkMug0cwDRE=~r-3wMrTfrkIjwWIt\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490985893~iL2UQUYCJtbeDHDcicdR0KqSrurHIrZQ_PU=~v6pTU55c9OQrvArW\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490503479~fvtCJapdwdW9ZVPqSIwWJPuuX5-b-7nYy64=~cmBKMhcx5UdC1vJv\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490935500~66Hu4DwT3zg014LESqOjbuNFznvFU6glRf4=~-X0vhc4dodxn_2TQ\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490479104~H973k4whiPKzjN7bH5vdcC792iNumyTjZg0=~A50koRIkwASgopzT\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491390712~bOzM--_lCSqBaxy50nEnF2iF8vLTaaLVS3U=~weS1qfAqsTyxzG42\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490985468~i9IGbvLLa5nFxoUc_L03A6Yu0bCk-BWz5xg=~04rVpej6Gy_rdStE\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590001266~SCI3dNO5xaNshx1TcwMbtn6JqoJ3cmdUYYE=~j67W3xtvR4CDaNH6\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490999937~cyV6xaFmVOZr9SEQDuiIu148AnZw4Qh80SA=~C3XIyKEafEnUsLFy\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490729040~7v_XLSfJNcc_qJguhHIlKzaBaz6yXsdQhD8=~yicgIPpj-Y9O2ZV8\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491538484~uornkL36nRoevIgB-XPcy9BeolaznEda7Mg=~s_JVKbFCIp-OnPvH\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491409955~9ok3tyYbIn8-xWenfCY2m87gEHkadedkcjk=~Jw3Qok2Q9WzBSono\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490008277~7xpZIMu8ynz4jKw8rYFN429tFFuqiUZpcXU=~kz5MgAlIXU4-0DbK\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491470500~k18YW-Kt8wnqgzvtB_n-RVdlDV0FjpLBSrE=~ZqfVKYZA_0X5qIrK\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491598799~6iKe66B14vedP5j3n34KR3EoTjpE7FXUSJg=~oN9UNLGLZ_Uzx6lm\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490012806~HIp3A68NrzcYmWivXwJFiGUq5fLPHp1mA3c=~c7f1NZD8lIBgUXT9\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491187264~-2RxrjuyJUkrHyXOpIxGJ_nLuZo2sSTqPsI=~F__rroEwJudpyOhK\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490337869~qn6ZItNBYwCJ3KOSIo33lz7Oc0UpLzstMMw=~uAkzoggmIXI9i6tO\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491168382~LSu4IdoKdk0wpQuyG09b8ZkfyJu_gA6m6R0=~eUBZkvvqHARtF6TR\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490007371~RZpLRUhg6cNe78IlyLJamGRGU7kb2tjex1M=~qJe9imqXjCsQU8al\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491441280~X1ngDOpqpQulb27u3jk1ZkfLA8_1H2MOloM=~87ScltkR86N-i746\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490006017~rwGc3TFQQTrjwP3dzxBCzCqiXiK6ptu3U3w=~bpuZqQPwKIebhhNj\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491417390~S4V3PY6tqBUoxo54pEA-KfE9AWvCil5ttgU=~jmJ5a_e2Ep1zHKwK\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491583792~T1HN2f046JFYDBv0SjvMY5dukyoNwu5dewE=~PD1OMBRAaxCVDoqm\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490000031~6rD5xpVpgArFQ-6jWq_AG4x6K9DQPbgXlmk=~s4EnKLL2glGYKwGk\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491322090~9mqdFkPjfk2GTgyeUJqmhm_PYafUb7TqUp4=~f7S_qsb2VEeNUlou\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490672482~skF53XLkA6yqhGQcyrzS4KU_yg6yH_5ePMs=~wCtWLX2Z7H4-DZhO\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491551491~_plLRz3eyQ4TIucZlCybHm6ONEsn5KmvRM4=~T9ZA3i5a41F-Se5E\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490009127~a9fILwDO4pNdDJ6vB7-1ukoekJfhctui_bk=~gdBcSAII3jUVUb_B\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491335765~MaTpVuVL3iElr4Pf-wUoFIVyJ5J0KMBjp9w=~Knlzo78FWL2X7RwR\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491186625~5ufw6FDS0PXjZTfVH6QNBZASoEyTU1HvzGs=~2ZlvJsKpOz_J3J35\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490001401~8sGJndNr4dAkH9dr5_VOkrDeHsFtccDPfxc=~_Qc3H3c8WGQ4aZXh\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491335633~hTI1av507USvmeKvZkPqdUvQMAfic-6BPG8=~_4cWDy3XfscVvYib\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491349596~FLh3l1ff8hNL-wXHP7MMkhPX94ilL5FhG7o=~J_slfPqflh8EfQL7\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003531~pFlgV_faqMGMMDLFhSCe56vTESaXD339WgE=~ChC6swfx_E5czf5N\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491584193~_FFl0t2zkbiHqYfcljGN2ngX2sJShgLAlqc=~i-kWv2YJs7c5HT3Y\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491278616~BrroiRigvA9JfOeYweI7XOtZuTSDE8HlTmg=~sHOT6nTlajMI9PCx\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491231095~D_tFgHWE8-tHuQ1XoqbouOF0xuob6JxEYuk=~P81Dd4lm17fyoVXY\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491504124~WS4PIxdoSS0yMbGh4k5LCXhqVcJlAyjqEVw=~LskzsoFzIw1kaZFQ\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490001341~dUfeyRuzQtmF-_gjoTkCyafjDidoMElPgDA=~3IG-QF5MC4mQQnxu\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490542637~XCcvYbOkPc3vSreBWkLiAjuQZ8wg6sgTG90=~NcaZNgpnC4E6eIGx\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490015763~3Q6gIsmsehbWhf-uRQFmrhvPawqWjim1lAg=~4XX0bfx4Dfw0MpzW\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491186631~1TxFWrh0E92KUOpXiHhTZvw7M4sLeeHJFLs=~34xZETh4whNodtTv\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490782404~GOyvV5qEprOUwXCQ3zDQygM4OAwMxoda1rg=~EpRv5C83O5BCFL3L\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491373488~KdXNGuI-esehiDug7DAgV1N3iU8C5Z6EJ-k=~0Sek71fTwhjAnyU0\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491299500~pWCiYcZrbw0ZI6xAYc38WccmOAB82j526RM=~XdayMOy-iPO3MtFn\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000619~fCtpKdRFo-IUfq-w91sCaovYbPimFNmoQg4=~mlCsEWEQbdXpLOl0\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491584192~5Fc_3xcjB9ov7gKG-sQpKVcwyxxQESNsHrY=~3RkfMEId5F8Zi-Rf\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590003516~_FSVxlLpZTLZNajgmde2LzQYQEaDXDxYKY0=~FCb3b23oZcifxwrn\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490999936~52IvLFBoLFA4zBP9VmZZqxd81uRQvTdwAGs=~9xW6m1aJTdW8Tpcs\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491185114~SGeMO5gE8g-1bQAIkBVVu7K9oDF72-_lMvc=~UcCjqZO5GugoXev3\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490003812~oVnuSiMQ_dXuU89apA31_PuybHd49Qdf2FA=~R4w85Asx7_b-6R-Z\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491416424~fFs3qsjFUCGK_K33F789S2GgYQlWsyQPRyE=~H24O4p8Zj0IS4vGA\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490000827~VRyRM-LEsyXNlCXwdD_UiH52TWJuGXDS8O8=~LzMNJvF8yd_ell9i\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491249717~vnuLFwK0jfVO3JsT26QzTsATaF-DIrLWM_s=~X30QGA6yPc5Pmzx8\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"490008230~lKCc7Ehhh9sqr5z698R1eVbwAEBRtzK27-0=~4xX4lCNxf4tpRyoV\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491071103~6dWvJ4K4607sR-PUnHAkCyl6LkLDZk8-p14=~YP5VeyEMsOfuDjfz\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491215527~EVXtU2Vj12yAEPTzAStjiKrgu4lPAwR2S6c=~6jq3cZdpXfLvUfHC\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000092~ml_UnByfYvk7-V8f-STQC3igdv0zdVqwKyc=~agAWZcCben8gKVUa\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490346029~7dLG0MR4BSRIPvS8_PlvWevQ4BBe98UdA8I=~BltF5e72uJNcvLnZ\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490003796~8BnXPzXRYKN9w6nQ3gCBGm74EkQXlR38jYw=~KER1QDHwFxTOkssr\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491458271~7orcxsxCXSHgkL0LrmsHtk5PJgnCJ6Ry1rU=~FpFOUoS2qYGrNKIw\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491586426~E2DHVmXHWLhmj8cbZxCgs3mG_RbLDDgnEB8=~_nsruXFfoMzJrLTu\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"590000002~QsZxN7Ug_c5GLOqxvk88Ixhq2T3TV9XVx44=~GHqGOgDJ2cEZJzru\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000086~Z701cTIEBQAdNy5URzTJPqD5vsx03Ru0PmM=~DpvTriIMVWEzeXdk\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491439871~cuToLpg569MMlV5Vd-Ax2W6QeelQYlnYKrU=~9gfcxLu7W7FOeESQ\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"590000083~rNBzq7bW8cdecyrcLhym4-gOnclnT-fbca8=~CyYIuHTQfUi9Q08i\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490000041~y6LGOJiUKamN5C2gux3e4SjBLyTn79U8QAs=~Q1e10Z0dapk9sZ87\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491338173~y2Exvin931g_izF3G7KI3kKCi3SJ2TbmHOA=~62pSqrlf8f9p_2C-\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"490010049~pNnG6xR60MB4RuNb1ZV6ztWZ-I0dOnd1CsY=~sciHJZq-7qE3nLBd\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491436153~5lcgGs2YJFV10F3WEEQifTnhX0HOjyYvY7k=~-2QK16hdMS4azVBA\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491470720~Xs9HKIjxmANS_W_e01bPnNzHoLiHEQLC0Xk=~0cRI2LNqh1o7YGea\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491187257~WGLLWjvBrDFUMKuH4MqPA2NbgdzJu_9mHDs=~kEi7XunYjBfTMzXj\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"491019563~uhhJEPIBbP7-7oAwwXa6AUuSU1Eu_onQVn8=~KSe9zSaz-KBE-luS\"\n    },\n    {\n        \"bucket\": \"mylist\",\n        \"retailer_id\": \"491586021~G7zyrwmj6EJd0lECYiXwgmdLxHuSp9LFHsI=~qbzHVer1_ANuJa7c\"\n    },\n    {\n        \"bucket\": \"recommended\",\n        \"retailer_id\": \"491185161~_YP6KQh7P7boOphvANVttaywRGFNaNfbfOI=~_rFn8a_PfHIi5pZR\"\n    },\n    {\n        \"bucket\": \"topdeals\",\n        \"retailer_id\": \"490226009~_pVjm1IqGwvXXbz4CoSwxlEs2yzdH1U0ETI=~0DJVyjLpCtPdxnMX\"\n    }\n]"
+				},
+				{
+					"name": "get_product_id_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_product_id_list?mobile_no=9094762110",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_product_id_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "8554"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 20 Oct 2021 16:47:50 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490001392~DDyTV4D6MgumcDqut36V1dIZ-dDiA96H6lU=~5AVoWFOoJiHam7ga\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491062929~QCa1rGc9-NwxB3ZdcXUuKvc47RB0FP2cuPI=~sXmV_Yltf5L0_osb\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490008332~1_yAF67xTxrxk3F7_-6adJjA2Pt2DB8eeUE=~SYM57xNxP7y7lrpb\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490966844~ijMBSMDWN7aZ4qNcsXO-45eo2E1iBgettBA=~Mau2cIOqHZzfcgJe\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491127282~leexQCIkkHQyTU7W4WBEkzQHIeGxZh4Ws1Q=~yHfB8-9YZ9WgZHFB\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491441281~zuL7uoE7BeN7WyGWt9f0IowQvzA7cYHG83w=~SYkbtIQs_GciDBJ3\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491379415~LMCv2tdTtSUFk_9ef7-7cw36fYVcMrb5ddU=~oE34cddgW-TbB84P\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490985893~it4Wy0dXpTOkBlG3rLpx2jaxP4UVeCu_Hwo=~H-R1OT2aHJ7fbNhM\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490503479~klbpqDntS_hHjfBcLMRC4wJSMP_xBb12N1Q=~40tn3u0LL-SR4U2K\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490935500~TqvdkDv34jN_lFLBUav1Z7eYRlqeoyuQEOg=~A7B_XRjzVD2nOAPM\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490479104~eCKt-oqaKoFzkC-x0bO67xP_Bj1o8N3JC0g=~RIMCXTMUdPA_EYJd\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491390712~YB-91QD8z5n_hK0e2SdbwgIN7rLURTPFDbQ=~hdeoy8kO9PGHww13\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490985468~RgSe5CyXku4JwCnw2RdanR7J5N9ix0WTbn4=~UahFfMbGBRpKKvEC\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"590001266~8MhV2QOIh8uwt7ESfbyuoK2_knkEmc639mg=~6IP6emYO5mK8zzc7\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490999937~vhqW8NmjmXHoDP70dCOIHAJUawWImJVoVCM=~X0n690BdRsUvc0w3\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490729040~ig4dezKhrWlX_TgfjdSuRdq2jqE-04_8g5U=~i69kngdk6pz1ENg1\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491538484~IWfefmn2DVAS3LOhHcq66bgAuSEU4bt5gnA=~3cNiGmUDQMMBEnpC\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491409955~oSk-81DrIxxQryG3OR54UmVUQMsRVq5xQmQ=~M4qpjukWiYutoX7V\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490008277~urVbwrZ9OG5e01D5CcBe-IgiIHMoiv3RQpA=~UQj_P_stTLEEfII4\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491470500~lqNgInUpCY1kgiJZ-2lgFjkCOItdMqkC2xU=~sjzglQdj_qCnVCYq\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491598799~NK4qZ5cOPh6v8PXBUR5vKEBYd7sb7tVuFME=~JywykGSdYUGZndFL\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490012806~_u-nDGJ2Dno9Ra-tOGKMLJLkBhnVmWAp9iA=~WW30mbSXvSA6PK8w\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491187264~QIgfkZY1ZhClbOPmFEsxk2jzxJ3BJNWbscc=~nAYOuHJJ-6Mljzvl\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490337869~HMOIpwHv-7CeLpHZz1KOqxR7mLjj5Zaf6hQ=~0_hnIXvvdR0Qpxj6\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491168382~DIM8NIZuVqc-UhOABCLqzry7-Estz1yHPIo=~DQnk2vNXMdv0jDNI\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490007371~BxanylbHF6mousng10VEVTEBQbPMR_dSZSI=~CGseaqsvhhmDVkrM\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491441280~-LBr8UUtgHt1-wdRTctQeRHy7QDoIg9fODQ=~qWv2cmvWM7VOi-ds\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490006017~ZF-bHRI4KG5A-wzXpJ2g-Iobakl2Sxz6tPg=~VBkwqL9o9fV_dHdh\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491417390~_qmMBs8JP0l8sHMHBLTcxYBCcQGC79pxGKk=~bwXw2-veiu-KvDBJ\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491583792~J1acHb80Vz5JZdk98HRuZlldIFvvY6M3i2k=~NOqwxUUsQiIHyQS7\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490000031~XciX2mshl8Twv3qrJXIeLrkUDe1laWozS4s=~NDu5j38QbOd51gkJ\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491322090~xMfd42f_6-w-icHtbmW9lV-sjdFREnPPAkU=~cvC4hsMe1TPbPS1A\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490672482~2t54WyXP2dgL0xrNU2AqrW8lDs0SOCPZCMk=~xkzat6rZgzDN6_6W\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491551491~E_-gR1IZ_ko6NIOqmFJgUFjfydh-BicPaVM=~RZv0bsOSRvsYHlxt\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490009127~Q1-CGqkqxmWHK-KqBt_UiEEOVUpjMbyjGVs=~Nhgpd363ai8fgciF\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491335765~vtLABoD8V7bwJ4kCuUaYrQ1jYoih1_XoqeA=~43c5bB3JRtrgnMHz\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491186625~PurjaKUihggtQR2WxyddM5pijsNIVia9N6U=~sW6UOCy3zOLYj8QF\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490001401~iil8q0gL4hv5ALXLgkCJNwcMMXHuVAZZqTs=~JKOyuhRxsf7ALqdr\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491335633~iVO3QE7M8SZ3yCKop1ZSNOOK4uWCGhWweN8=~NFTVaZ6CAmgKExOz\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491349596~FeeF_tzs4mLPDuxiBQZRQfdSr1OphokxmoY=~Ulb2QQrW5PooPzUj\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"590003531~vq2qouDi0medgLRH6zvhIhQWuJQWcaxpE0c=~vshRVsGcJy776In6\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491584193~-nKj2acBrEjcoOGise19Y9tZEytS4icj0cA=~tHcd0wLJCbfuWv2U\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491278616~8R5mmaDXxEGMtwO1xfuD4efgp4Wc87OZy5g=~v0SFBrS9ZjJGi2BU\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491231095~wrDBcV-R6b-S6ewSQTlWWJcqHHdqtPg8754=~Wb70l6lVHqKTWm5I\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491504124~_EsI4ldaqDRcwZXKar1qDk6x3kUo58BH6RY=~wjZZH_M0zud5fyZF\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490001341~pi7ZvTJHMMIrFsWNFQ0NBaK86SNNYS9UrcI=~QtH3G5t3Eu3xBdzL\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490542637~yZFFqGBM_YLZyJS1wUzyNTwQu2wQhSHTKJU=~Afxnps_uI1RayiS7\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490015763~L4itejTn7_8wPcX_iuQCQGk91OKW_UgH7Ls=~uxCs-Eh8jpSpVCzh\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491186631~Lbcnhd0mG8DPUQG1cvlrbPJtUPHuWdq-YyQ=~aIi6KwW-bL_OTCRJ\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490782404~xdg-CUzFhze2LFimNMLD9wJHKfkinV2OtiU=~PI986jf8S4lRA-fm\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491373488~skiNlqhHeui_JU51hhZiFaEpvgl4CNSx81s=~k6H8Au_IR_GFi5RS\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491299500~Qa1cXzYuENLr_56zSmGQ5rmgYiJ3eJwieDs=~COAD-XOAqIqomBqJ\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"590000619~XXb3SgmH9qG9Yj_2-YgXDVdaN-4eFniFAvQ=~NjPGZ0ymojVBITiO\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491584192~iGmXGAegyScny1n4nDVz_D-FjNFZZhA7Iis=~IHCCGpeynPaBL0TD\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"590003516~hux4xrOV17i6T6IXyoVQOWulsj5cg0nvHYE=~AzP7Iq3_xM5fUVvV\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490999936~VnLN4MqG-xvLozb52H5lQ0cuYD58CyhUUnY=~Z8ennvhWRa4KZeDc\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491185114~HzP4mUeoQVtMY8OaO1ey7vqWAfC7Sz_W_Ig=~_VL4y5YArzXKeih-\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490003812~uUfpT4KDFCvyYft7IHks4f4G334BCjl6FFE=~Dcd6pD_QCY8gUVg-\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491416424~wsAyRpbcA2PRy2mX5sohG02kvEF9xob1U1U=~--PdiE7tXkUkCaO0\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490000827~-Ymm49kPvsQ34f8SIlloQUtcvY1Ca8Bdtgc=~Bi3j9VNkhLPAF8xM\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491249717~s0XfA6GgABZS7EBkfIVudQN0qX9pEWIhnxY=~xalCGazKY-LfNezh\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"490008230~w03A8NaxJGauc-PGegsE16m0eNqGcm0cCZ4=~O90jWG610z8MpwLR\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491071103~MBGmzw5RCBUqPZUcFUmoxIvs6bqA-2xSP-c=~tzsb1RmoRgXgntRE\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491215527~Sx93GXDaRuWzWXJ3coWumzhdYBq60m4cJyk=~yEBVnJ2A7G9Z9__d\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"590000092~BzLWT8uvULwuDJlBNVEIaZAbl0VhYPNOlHY=~A8-PoBBV99QFXajM\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490346029~4ZneVVnzAQ5q9r3_n_JU2-QgdtOaArVgag8=~1M5cDmEBDrMmQEYm\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490003796~9JhnMdGtpnXDwMbRjhOHooS8F9SrbA67gMY=~vDlZW2DUHd4lzvy1\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491458271~hd8X-EKD0JlviWPrcMBu32glNpM_U3hn3mo=~pWKNyMAesCX77mJk\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491586426~EfMNLZiqo46IOFgRwC1Ad51mrf9ZLKwxiJA=~ctMpB2Yn5VG22TgR\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"590000002~OKeDI_v04yQjRr76zgZRKs_mny17QxaxRKE=~NQY4p-iLFPhE80zg\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"590000086~egrb5vhmAsoq0-bBguieU1bp1ntOi38r71o=~SsjSYNJRrt_Ufh0b\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491439871~6wP5jSIMKgiocus_bjbhDFeqXPcV46RTYsA=~QHB6BquFwGvVHLDq\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"590000083~2ZVR-M7xh4y0Iwd1eMrUasVlA2A-xHQBL4o=~uG1_UPg7GsQhoyeM\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490000041~7_SX9we9zeU4f5U-IaBhF2h-iwG8uswgYHU=~DMClkeZwkXuKqKAm\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491338173~kaqXTpyPcBnPZ4EsgXwdR0Dz3RHhItKZi2Y=~aWb9zUMbrLOoMayA\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"490010049~P4VBqYss2fqsqJZ825ihIetSZPcK-5B7GNU=~rpMqZus3IgaA2zIs\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491436153~PuhXO8WdDijNO1AIePyttc5u34m92JIRkn0=~cuENjjY16tBUT7fE\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491470720~0gbPt7449QNK08S5qeideaLhx1STdBaeMSw=~NSgK3H9tSRtPeXSB\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491187257~UrCL2z_NGDf57iu8RsTnWQkoYK_x16TQV-0=~y5IeEK2BdgRUX8Uw\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"491019563~g64HD5Ts4skA-hnqg6-A-O3KYBH_YDkG5ZQ=~0jY1NZ20HS4U9MTS\"\n    },\n    {\n        \"bucket\": \"My List\",\n        \"retailer_id\": \"491586021~HRuzSDwDVuYy8RJ2dIa7B_p2Ze3vi4hD7N8=~ZXX3LWsfv361ES7L\"\n    },\n    {\n        \"bucket\": \"Recommended\",\n        \"retailer_id\": \"491185161~y2M-KJjqDruyGXW9fTtN9OIsmKwQ4D8G-Qw=~61S4KHiZ4Ii4xMhs\"\n    },\n    {\n        \"bucket\": \"Top Deals\",\n        \"retailer_id\": \"490226009~C0JHc4xUZS8QB9kPxHVk6xs2EGZVE0GulNY=~e2PCyzUtD_OskSl6\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get_cart_list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"correct response\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{waa-baseurl}}/rest/v1/hk/get_cart_list?mobile_no=9094762110",
+					"host": [
+						"{{waa-baseurl}}"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"hk",
+						"get_cart_list"
+					],
+					"query": [
+						{
+							"key": "mobile_no",
+							"value": "9094762110"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_cart_list",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{waa-baseurl}}/rest/v1/hk/get_cart_list?mobile_no=9094762110",
+							"host": [
+								"{{waa-baseurl}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"hk",
+								"get_cart_list"
+							],
+							"query": [
+								{
+									"key": "mobile_no",
+									"value": "9094762110"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1121"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Oct 2021 09:31:29 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"cart_list\": [\n        {\n            \"is_merged\": true,\n            \"id\": 69343,\n            \"price\": {\n                \"total\": 1432000,\n                \"currency\": \"INR\"\n            },\n            \"created\": \"2021-10-11T14:23+05:30\",\n            \"products\": [\n                {\n                    \"retailer_id\": \"490966844~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n                    \"name\": \"Nivea Men Sensitive After Shave Lotion 100 ml\",\n                    \"price\": {\n                        \"price\": 179000,\n                        \"currency\": \"INR\"\n                    },\n                    \"media\": [\n                        {\n                            \"id\": \"4909668441\",\n                            \"url\": \"https://test-jiomart.netmeds.com/images/product/150x150/490966844/nivea-men-sensitive-after-shave-lotion-100-ml-0-20200921.jpg\",\n                            \"height\": 150,\n                            \"width\": 150\n                        }\n                    ],\n                    \"quantity\": 8,\n                    \"max_quantity_in_order\": 4,\n                    \"deleted\": false\n                }\n            ]\n        },\n        {\n            \"is_merged\": false,\n            \"id\": 69342,\n            \"price\": {\n                \"total\": 716000,\n                \"currency\": \"INR\"\n            },\n            \"created\": \"2021-10-11T14:23+05:30\",\n            \"products\": [\n                {\n                    \"retailer_id\": \"490966844~7WHIkBN1nt6dWv1cHo9HafOQikiDLeHYe_k=~S2JQZVNoVmtZcDNzNnY5eQ==\",\n                    \"name\": \"Nivea Men Sensitive After Shave Lotion 100 ml\",\n                    \"price\": {\n                        \"price\": 179000,\n                        \"currency\": \"INR\"\n                    },\n                    \"media\": [\n                        {\n                            \"id\": \"4909668441\",\n                            \"url\": \"https://test-jiomart.netmeds.com/images/product/150x150/490966844/nivea-men-sensitive-after-shave-lotion-100-ml-0-20200921.jpg\",\n                            \"height\": 150,\n                            \"width\": 150\n                        }\n                    ],\n                    \"quantity\": 4,\n                    \"max_quantity_in_order\": 4,\n                    \"deleted\": false\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "waa-baseurl",
+			"value": "https://stage-jiomart.netmeds.com/waa"
+		},
+		{
+			"key": "current_store_id",
+			"value": ""
+		},
+		{
+			"key": "total stores",
+			"value": ""
+		}
+	]
+}
